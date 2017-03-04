@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery : Exercice 3 - partie 4</title>
+    <script src="jquery-2.2.4.js"></script>
+  </head>
+  <body>
+    <form action="index.html" method="post">
+      <label for="name">Nom ? </label><input id="name" type="text" name="name" value="">
+      <br>
+      <br>
+      <label for="lastName">Prénom ? </label><input id="lastName" type="text" name="lastName" value="">
+      <br>
+      <br>
+      <label for="mail">Adresse mail ? </label><input id="mail" type="text" name="mail" value="">
+      <br>
+      <br>
+      <label for="number">Numéro de téléphone ? </label><input id="number" type="text" name="number" value="">
+      <br>
+      <button type="button" name="button">vérification</button>
+    </form>
+    <script>
+      $(function() {
+        var emailRegex = '^[A-z0-9._%+-]+@[A-z0-9.-]+\.[A-z]{2,4}$'; //Expression régulière permettant de vérifier la validité d'un email
+        var numberRegex = '(0|(\\+33)|(0033))[1-9][0-9]{8}'; //Expression régulière permettant de vérifier la validité d'un numéro de téléphone
+        var letters = '^[A-z-]{3,16}$'; //Expression régulière permettant de vérifier la validité d'un nom, entre 3 et seize lettres
+        $('button').click(function() {// sur le clique du boutton
+          if ($('#name').val().match(letters)) { // si la valeur de l'input #name 'match/correspond' l'expression régulière letters
+            $('#name').css('border', 'green 6px solid'); //alors le nom est validé par une bordure verte
+          }else {
+            $('#name').css('border', 'red 6px solid'); //sinon, bordure rouge est message d'erreur
+            $('#name').val('erreur');
+          }//et ainsi de suite...
+          if ($('#lastName').val().match(letters)) {
+            $('#lastName').css('border', 'green 6px solid');
+          }else {
+            $('#lastName').css('border', 'red 6px solid');
+            $('#lastName').val('erreur');
+          }
+          if ($('#mail').val().match(emailRegex)) {
+            $('#mail').css('border', 'green 6px solid');
+          }else {
+            $('#mail').css('border', 'red 6px solid');
+            $('#mail').val('erreur');
+          }
+          if ($('#number').val().match(numberRegex)) {
+            $('#number').css('border', 'green 6px solid');
+          }else {
+            $('#number').css('border', 'red 6px solid')
+            $('#number').val('erreur');
+          }
+        })
+      });
+    </script>
+  </body>
+</html>
